@@ -6,37 +6,43 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Retriever {
+    private static final Set<String> STOP_WORDS = Set.of(
+            "is", "the", "a", "an", "and", "or", "but", "what", "how", "much", "for", "with", "this", "that", "it");
+
     public static List<DocumentChunk> retrieve(QueryInfo queryInfo, List<DocumentChunk> chunks, int topK) {
-        Set<DocumentChunk> keywordHits = new HashSet<>();
-        for (String word : queryInfo.normalizedQuery.split("\\s+")) {
-            // Production Improvement: Use inverted index lookup
-            // (Lucene/Elasticsearch) instead of iterating chunks.
-            for (DocumentChunk chunk : chunks) {
-                if (chunk.text.toLowerCase().contains(word)) {
-                    keywordHits.add(chunk);
+        Map<DocumentChunk, Double> scores = new HashMap<>();
+        String[] words = queryInfo.normalizedQuery.split("\\s+");
+
+        for (DocumentChunk chunk : chunks) {
+            double keywordScore = 0;
+            String textLower = chunk.text.toLowerCase();
+
+            for (String word : words) {
+                if (STOP_WORDS.contains(word))
+                    continue;
+                if (textLower.contains(word)) {
+                    keywordScore += 1.0;
                 }
             }
+
+            double vectorScore = similarity(queryInfo.normalizedQuery, chunk.text);
+            scores.put(chunk, keywordScore + (vectorScore * 2.0)); // Weight vector similarity more
         }
 
-        // Vector similarity placeholder
-        List<DocumentChunk> vectorHits = chunks.stream()
-                .sorted(Comparator.comparingDouble(c -> -similarity(queryInfo.normalizedQuery, c.text)))
+        return scores.entrySet().stream()
+                .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
                 .limit(topK)
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-
-        // Merge hits
-        List<DocumentChunk> combined = new ArrayList<>(keywordHits);
-        for (DocumentChunk c : vectorHits) {
-            if (!combined.contains(c))
-                combined.add(c);
-        }
-
-        return combined.stream().limit(topK).collect(Collectors.toList());
     }
 
     private static double similarity(String query, String text) {
-        // Production Improvement will use embeddingapi like openai
-        long matches = Arrays.stream(query.split("\\s+")).filter(text.toLowerCase()::contains).count();
-        return (double) matches / Math.max(query.split("\\s+").length, 1);
+        String[] queryWords = query.split("\\s+");
+        String textLower = text.toLowerCase();
+        long matches = Arrays.stream(queryWords)
+                .filter(w -> !STOP_WORDS.contains(w))
+                .filter(textLower::contains)
+                .count();
+        return (double) matches / Math.max(queryWords.length, 1);
     }
 }

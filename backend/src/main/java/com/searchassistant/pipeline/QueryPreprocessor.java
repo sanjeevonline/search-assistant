@@ -12,14 +12,30 @@ public class QueryPreprocessor {
         if (info.normalizedQuery.contains("mri")) {
             info.entities.get("procedures").add("MRI");
         }
+        if (info.normalizedQuery.contains("ct scan")) {
+            info.entities.get("procedures").add("CT scan");
+        }
         if (info.normalizedQuery.contains("plan x")) {
             info.entities.get("plans").add("Plan X");
         }
+        if (info.normalizedQuery.contains("plan y")) {
+            info.entities.get("plans").add("Plan Y");
+        }
+
         if (info.normalizedQuery.contains("limit") || info.normalizedQuery.contains("how many")) {
             info.intent.add("limits");
-        } else {
+        }
+        if (info.normalizedQuery.contains("deductible")) {
+            info.intent.add("deductible");
+        }
+        if (info.normalizedQuery.contains("copay") || info.normalizedQuery.contains("cost")) {
+            info.intent.add("cost");
+        }
+
+        if (info.intent.isEmpty()) {
             info.intent.add("coverage");
         }
+
         return info;
     }
 }
