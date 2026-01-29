@@ -66,6 +66,21 @@ cd backend
 mvn test
 ```
 
+## Debugging (VS Code)
+
+I have configured the project for integrated debugging in VS Code.
+
+1.  **Open the "Run and Debug" side bar** (Ctrl+Shift+D or Cmd+Shift+D).
+2.  Select **"Debug Full Stack"** from the dropdown menu.
+3.  Press **F5** or the green "Play" button.
+
+This will:
+- Start the Java Backend with a debugger attached.
+- Launch a Chrome window for the Frontend with a debugger attached.
+
+> [!NOTE]
+> Make sure the frontend dev server is running (`cd frontend && npm run dev`) before starting the frontend debugger.
+
 ## Features
 
 -   **Hybrid Search**: Combines keyword filtering and simulated vector retrieval.
