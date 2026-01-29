@@ -14,7 +14,7 @@ import java.util.Map;
 // 5. Handle overlapping chunks to preserve context.    
 // 6. Use a distributed Vector Database (Pinecone/ Weaviate) for efficient similarity search.
 // 7. Batch embedding requests to the model provider.
-// 8. integrate with a real scalar embedding model (OpenAI text-embedding-3, Cohere, etc.). 
+// 8. integrate with a real scalar embedding model (OpenAI text-embedding-3, Cohere, etc.)
 public class KnowledgePipeline {
     public List<DocumentChunk> chunks = new ArrayList<>();
     public List<DocumentChunk> vectorDB = new ArrayList<>();
