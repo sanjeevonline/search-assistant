@@ -91,6 +91,44 @@ public class Main {
                                 "Mental Health outpatient visits are covered with the same copay as a Primary Care Physician visit.",
                                 "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
                                                 LocalDate.of(2025, 1, 1))));
+
+                // --- Plan X Enrichments ---
+                docs.add(Map.of(
+                                "text", "Plan X Annual Deductible is $500 per individual / $1,000 per family.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text",
+                                "Plan X Annual Out-of-Pocket Maximum is $5,000 per individual / $10,000 per family.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Plan X Primary Care Physician (PCP) Visit Copay: $20 per visit.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Plan X Specialist Visit Copay: $50 per visit. Referral not required.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Plan X Urgent Care Copay: $75 per visit.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+
+                // --- Plan Y Enrichments ---
+                docs.add(Map.of(
+                                "text", "Plan Y Annual Deductible: $0.",
+                                "metadata", Map.of("plan_id", "Plan Y", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Plan Y Primary Care Physician (PCP) Visit Copay: $40 per visit.",
+                                "metadata", Map.of("plan_id", "Plan Y", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Plan Y Emergency Room Copay: $500 per visit.",
+                                "metadata", Map.of("plan_id", "Plan Y", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+
                 pipeline.ingest(docs);
 
                 orchestrator = new QueryOrchestrator(pipeline);
