@@ -10,8 +10,10 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 echo "Starting Backend..."
+cd backend
 mvn clean compile exec:java -Dexec.mainClass="com.searchassistant.Main" &
 BACKEND_PID=$!
+cd ..
 
 echo "Starting Frontend..."
 cd frontend

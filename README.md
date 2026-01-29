@@ -13,10 +13,10 @@ Before running the project, ensure you have the following installed:
 
 ## Project Structure
 
--   `src/main/java`: Backend source code (Javalin server, Knowledge Pipeline).
--   `src/test/java`: JUnit 5 test suite.
+-   `backend/src/main/java`: Backend source code (Javalin server, Knowledge Pipeline).
+-   `backend/src/test/java`: JUnit 5 test suite.
+-   `backend/pom.xml`: Maven dependency configuration.
 -   `frontend/`: React + Vite frontend application.
--   `pom.xml`: Maven dependency configuration.
 
 ## Getting Started
 
@@ -27,6 +27,11 @@ The backend runs on port `7070`.
 ```bash
 # In the root directory (search-assistant/)
 ./run.sh
+
+# Or to run only the backend
+cd backend
+mvn clean compile exec:java -Dexec.mainClass="com.searchassistant.Main"
+
 ```
 
 *You should see "Search Assistant API running on port 7070..."*
@@ -57,6 +62,7 @@ npm run dev
 To run the backend unit tests (including Pipeline logic and PostChecks):
 
 ```bash
+cd backend
 mvn test
 ```
 
