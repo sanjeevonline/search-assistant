@@ -70,6 +70,25 @@ public class Main {
                                 "text", "MRI coverage for Plan Y is unlimited.",
                                 "metadata", Map.of("plan_id", "Plan Y", "state", "CA", "effective_date",
                                                 LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text",
+                                "Emergency Room visits have a $200 copay. Copay is waived if admitted to the hospital.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text",
+                                "Physical Therapy is covered up to 20 visits per calendar year. Authorization required.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text", "Generic prescription drugs have a $10 copay for a 30-day supply.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
+                docs.add(Map.of(
+                                "text",
+                                "Mental Health outpatient visits are covered with the same copay as a Primary Care Physician visit.",
+                                "metadata", Map.of("plan_id", "Plan X", "state", "CA", "effective_date",
+                                                LocalDate.of(2025, 1, 1))));
                 pipeline.ingest(docs);
 
                 orchestrator = new QueryOrchestrator(pipeline);
