@@ -2,10 +2,10 @@ import React from 'react';
 
 const PromptSuggestions = ({ onSelectPrompt }) => {
     const suggestions = [
-        "Is MRI covered for Plan X and what are the limits?",
-        "What are the CT scan limits for Plan X?",
-        "Is MRI covered for Plan Y?",
-        "Tell me about coverage for Plan X in CA"
+        "What is the deductible for Plan X?",
+        "How much is a Primary Care visit for Plan X?",
+        "Is Urgent Care covered for Plan X?",
+        "Compare Primary Care copay between Plan X and Plan Y"
     ];
 
     return (
