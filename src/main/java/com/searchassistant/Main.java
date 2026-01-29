@@ -25,6 +25,8 @@ public class Main {
                         });
                 }).start(7070);
 
+                // check server is running
+                app.get("/", ctx -> ctx.result("Search Assistant API is running"));
                 app.post("/api/query", Main::handleQuery);
 
                 System.out.println("Search Assistant API running on port 7070...");
