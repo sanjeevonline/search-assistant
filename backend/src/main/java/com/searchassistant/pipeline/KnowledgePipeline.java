@@ -8,13 +8,11 @@ import java.util.Map;
 
 // In production, 
 // 1. keywordIndex should be persisted in a distributed Inverted Index (Elasticsearch/OpenSearch) or Key-Value store (Redis) to handle millions of terms.
-// 2. Ingestion should be asynchronous (Kafka/Queue) and handle large batches.
-// 3. Implement robust error handling and retry logic for individual documents.
-// 4. use a smarter chunking strategy (e.g., RecursiveCharacterTextSplitter, Semantic Chunking).
+// 2. Ingestion should be asynchronous (Kafka/Queue) and handle large batches. Could be Meddalian architecture... 
+// 3. Integrate with a real scalar embedding model (OpenAI text-embedding-3, Cohere, etc.)
+// 4. Use a smarter chunking strategy (e.g., RecursiveCharacterTextSplitter, Semantic Chunking).
 // 5. Handle overlapping chunks to preserve context.    
 // 6. Use a distributed Vector Database (Pinecone/ Weaviate) for efficient similarity search.
-// 7. Batch embedding requests to the model provider.
-// 8. integrate with a real scalar embedding model (OpenAI text-embedding-3, Cohere, etc.)
 public class KnowledgePipeline {
     public List<DocumentChunk> chunks = new ArrayList<>();
     public List<DocumentChunk> vectorDB = new ArrayList<>();
