@@ -42,7 +42,7 @@ public class Main {
                         if (userContext == null) {
                                 userContext = new HashMap<>();
                                 userContext.put("role", "member");
-                                userContext.put("allowed_plans", List.of("Plan X"));
+                                userContext.put("allowed_plans", List.of("Plan X", "Plan Y"));
                                 userContext.put("state", "CA");
                         }
 

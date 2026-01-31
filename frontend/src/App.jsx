@@ -25,7 +25,7 @@ function App() {
           query: text,
           userContext: { // Hardcoded context for demo
             role: "member",
-            allowed_plans: ["Plan X"],
+            allowed_plans: ["Plan X", "Plan Y"],
             state: "CA"
           }
         })
