@@ -86,3 +86,14 @@ This will:
 -   **Hybrid Search**: Combines keyword filtering and simulated vector retrieval.
 -   **Post-Processing**: Implements PHI redaction, tone checks, and automated disclaimers.
 -   **Demo Data**: Includes mock data for "Plan X" and "Plan Y" covering MRI, CT Scans, and Pharmacy.
+
+## Production Improvements (Mocked Elements)
+
+For this prototype, several core RAG components are simplified or mocked with placeholders. In a production environment, these would be substituted with scalable services:
+
+-   **Distributed Indexing**: A distributed Inverted Index (e.g., ElasticSearch) or Key-Value store (e.g., Redis) to handle millions of terms instead of in-memory maps.
+-   **Asynchronous Ingestion**: A document data ingestion process using a message queue (e.g., Kafka) to handle large batch processing.
+-   **Embedding Models**: High-performance embedding models (e.g., OpenAI text-embedding-3, Cohere) for semantic extraction.
+-   **Advanced Chunking**: Sophisticated strategies like `RecursiveCharacterTextSplitter` or semantic chunking.
+-   **Vector Databases**: Dedicated vector databases (e.g., Pinecone, Weaviate) for efficient high-dimensional similarity search.
+-   **Production LLMs**: Integration with production-grade LLMs (e.g., GPT-4, Gemini 1.5 Pro) for answer generation.
