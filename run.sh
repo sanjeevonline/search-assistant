@@ -17,6 +17,7 @@ cd ..
 
 echo "Starting Frontend..."
 cd frontend
+npm install
 npm run dev &
 FRONTEND_PID=$!
 
